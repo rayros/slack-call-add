@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 var argv = require('minimist')(process.argv.slice(2));
 
 (async () => {
