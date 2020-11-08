@@ -1,6 +1,7 @@
 FROM ubuntu
 
 RUN apt update && \
+  DEBIAN_FRONTEND="noninteractive" apt install -yy wget && \
   curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
   DEBIAN_FRONTEND="noninteractive" apt install -yy nodejs && \
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
