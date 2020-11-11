@@ -3,6 +3,14 @@ var argv = require('minimist')(process.argv.slice(2));
 
 const slackScreenshot = (page) => page.screenshot({path: 'slack.png'});
 
+const ifRoosterDialogueAppearsThenClickSend = async (page) => {
+  try {
+    await page.waitForSelector('.ReactModal__Overlay > .ReactModal__Content > .p-message_pane_modal_rooster__header');
+    await page.waitForSelector('.ReactModal__Overlay > .ReactModal__Content > .c-sk-modal_footer > .c-sk-modal_footer_actions > .c-button--primary')
+    await page.click('.ReactModal__Overlay > .ReactModal__Content > .c-sk-modal_footer > .c-sk-modal_footer_actions > .c-button--primary')
+  } catch {}
+}
+
 const callAdd = async (browser) => {
   const page = await browser.newPage();
   const navigationPromise = page.waitForNavigation();
@@ -60,6 +68,9 @@ const callAdd = async (browser) => {
   await page.keyboard.type('@here Zapraszam na call ;)');
   await page.waitForTimeout(1000);
   await page.keyboard.press('Enter');
+  await slackScreenshot(page);
+
+  await ifRoosterDialogueAppearsThenClickSend(page);
   await slackScreenshot(page);
 
   const audioCallPage = await target.page();
