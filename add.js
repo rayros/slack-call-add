@@ -65,7 +65,7 @@ const callAdd = async (browser) => {
     page.click('.ReactModal__Overlay > .ReactModal__Content > .c-sk-modal_footer > .c-sk-modal_footer_actions > .c-button:nth-child(2)')
   ]);
   
-  await page.keyboard.type('@here Zapraszam na call ;)');
+  await page.keyboard.type('@here Zapraszam na call :mlady: ');
   await page.waitForTimeout(1000);
   await page.keyboard.press('Enter');
   await slackScreenshot(page);
